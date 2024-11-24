@@ -1,0 +1,31 @@
+<div>
+  Name: <input type="text" #name [(ngModel)]="name.value">
+
+  <button
+    ahx-call="(click)post:user/create"
+    [ahx-payload]="{ id: 0, name: name.value }"
+  >Insert new</button>
+</div>
+
+<div>
+  Search: <input
+    type="text"
+    #search
+    [(ngModel)]="search.value"
+    ahx-call="(input:debounce400:every200)post:user/find"
+    [ahx-payload]="{ name: search.value }"
+    [ahx-component]="userList"
+  >
+
+  <button 
+    ahx-call="(click)get:user/list"
+    [ahx-component]="userList"
+  >Load results</button>
+</div>
+
+<div>
+  <h1>Content</h1>
+  <app-user-list #userList [data]="[{id: 0, name: 'Gaylord'}]"></app-user-list>
+</div>
+
+<router-outlet/>

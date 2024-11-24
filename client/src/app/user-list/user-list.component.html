@@ -1,0 +1,6 @@
+<ul>
+    <li *ngFor="let item of data">
+        <span>{{ item.name }}</span>
+        <button [ahx-call]="'(click)delete:user/' + item.id">Delete</button>
+    </li>
+</ul>
